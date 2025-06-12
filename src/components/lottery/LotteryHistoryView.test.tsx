@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { LotteryHistoryView } from './LotteryHistoryView';
 
@@ -27,7 +27,9 @@ describe('LotteryHistoryView', () => {
   });
 
   it('renders lottery history table when data is available', async () => {
-    render(<LotteryHistoryView />);
+    await act(async () => {
+      render(<LotteryHistoryView />);
+    });
     
     // Wait for the history to load
     await waitFor(() => {
