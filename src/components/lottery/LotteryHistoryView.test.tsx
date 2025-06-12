@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { LotteryHistoryView } from './LotteryHistoryView';
 
@@ -21,7 +21,7 @@ vi.mock('../../hooks/useLotteryContract', () => ({
 }));
 
 describe('LotteryHistoryView', () => {
-  it('renders loading state initially', async () => {
+  it('renders loading state initially', () => {
     render(<LotteryHistoryView />);
     expect(screen.getByTestId('history-loading')).toBeInTheDocument();
   });
@@ -30,8 +30,10 @@ describe('LotteryHistoryView', () => {
     render(<LotteryHistoryView />);
     
     // Wait for the history to load
-    const historyTable = await screen.findByTestId('lottery-history');
-    expect(historyTable).toBeInTheDocument();
+    await waitFor(() => {
+      const historyTable = screen.getByTestId('lottery-history');
+      expect(historyTable).toBeInTheDocument();
+    });
 
     // Check specific row details
     const roundRow = screen.getByTestId('round-1');
