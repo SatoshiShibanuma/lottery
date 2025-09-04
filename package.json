@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "vitest",
     "deploy:sepolia": "cd blockchain && npx hardhat run scripts/deploy.ts --network sepolia && cd .."
   },
   "dependencies": {
@@ -23,11 +24,14 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@types/chai": "^5.2.2",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.5",
-    "hardhat": "^2.13.0",
-    "typescript": "^5.0.2"
+    "hardhat": "^2.24.2",
+    "typescript": "^5.0.2",
+    "vitest": "^3.2.3"
   }
 }
